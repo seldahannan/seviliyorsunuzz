@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Öğretmenler Günü Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5dc; /* Bej tonu */
+            color: #2f2f2f;
+            padding: 20px;
+        }
+        .quiz-container {
+            background-color: #d2b48c; /* Kahverengi tonu */
+            border: 2px solid #000080; /* Lacivert tonu */
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 700px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #000080;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            color: #000080;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        button {
+            background-color: #000080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #000080;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Öğretmenler Günü Quiz</h1>
+        <form id="quizForm">
+            <div class="question">
+                <h3>1. Size kaç defa trip atmışımdır?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> A) Ben size hiç trip atar mıyım</label>
+                    <label><input type="radio" name="q1" value="b"> B) Ne yaptınız da trip yemek zorunda kaldınız acaba</label>
+                    <label><input type="radio" name="q1" value="c"> C) Sonsuz işareti</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>2. En sevdiğiniz, mükemmel favori öğrenciniz kim?</h3>
+                <div class="options">
+                    <label><input type="checkbox" name="q2" value="a"> A) Selda</label>
+                    <label><input type="checkbox" name="q2" value="b"> B) Silda Hac Hannan</label>
+                    <label><input type="checkbox" name="q2" value="c"> C) Yanınızdaki kişi</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>3. ....... olmadan hayat çok zor</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> A) Kahve</label>
+                    <label><input type="radio" name="q3" value="b"> B) Sigara</label>
+                    <label><input type="radio" name="q3" value="c"> C) En sevdiğim mükemmel öğrencim</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>4. Şu an bana bir ödül vermek isteseniz bu ne olurdu?</h3>
+                <p><em>Bu soru seçmeli sorudur. Eğer zorluk yaşıyorsanız en sevdiğiniz öğrenciden program bitişi yardım alabilirsiniz.</em></p>
+                <textarea name="q4" rows="3" style="width:100%;"></textarea>
+            </div>
+            <button type="button" onclick="checkAnswers()">Cevapları Gönder</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelectorAll('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+
+            let correct = 0;
+
+            if (q1 && q1.value === "c") correct++;
+            if (q2.length === 3 &&
+                Array.from(q2).some(opt => opt.value === "a") &&
+                Array.from(q2).some(opt => opt.value === "b") &&
+                Array.from(q2).some(opt => opt.value === "c")) correct++;
+            if (q3 && q3.value === "c") correct++;
+
+            if (correct === 3) {
+                document.getElementById("result").innerHTML = "<strong>Hayatıma dokunan en değerli rehberim, en büyük ilham kaynağımsınız. Öğretmenler Gününüz kutlu olsun &lt;3</strong>";
+            } else {
+                document.getElementById("result").innerHTML = "Bazı cevaplar eksik veya yanlış olabilir. Lütfen tekrar deneyin veya en sevdiğiniz öğrenciden yardım alın 😊";
+            }
+        }
+    </script>
+</body>
+</html>
