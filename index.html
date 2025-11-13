@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Öğretmenler Günü Quiz 💛</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f5efe6;
+      color: #2b2b2b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #1a1a40;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .quiz-container {
+      background-color: #fffaf2;
+      border: 2px solid #8b5e3c;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .question {
+      font-weight: 600;
+      color: #1a1a40;
+      margin-bottom: 15px;
+    }
+    .options label {
+      display: block;
+      background-color: #e9dac4;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .options label:hover {
+      background-color: #d5bea3;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #1a1a40;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #2f3b73;
+    }
+    .result {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #8b5e3c;
+      text-align: center;
+      font-weight: 600;
+    }
+    .description {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>💫 Öğretmenler Günü Quiz 💫</h1>
+  <div class="quiz-container">
+    <form id="quizForm">
+      <div class="question">1. Size kaç defa trip atmışımdır?</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="a"> A) Ben size hiç trip atar mıyım?</label>
+        <label><input type="radio" name="q1" value="b"> B) Ne yaptınız da trip yemek zorunda kaldınız acaba?</label>
+        <label><input type="radio" name="q1" value="c"> C) Sonsuz işareti ♾️</label>
+      </div>
+
+      <div class="question">2. En sevdiğiniz, mükemmel favori öğrenciniz kim?</div>
+      <div class="options">
+        <label><input type="checkbox" name="q2" value="a"> A) Selda</label>
+        <label><input type="checkbox" name="q2" value="b"> B) Silda Hac Hannan</label>
+        <label><input type="checkbox" name="q2" value="c"> C) Yanınızdaki kişi</label>
+      </div>
+
+      <div class="question">3. ....... olmadan hayat çok zor.</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="a"> A) Kahve</label>
+        <label><input type="radio" name="q3" value="b"> B) Sigara</label>
+        <label><input type="radio" name="q3" value="c"> C) En sevdiğim mükemmel öğrencim</label>
+      </div>
+
+      <div class="question">4. Şu an bana bir ödül vermek isteseniz bu ne olurdu?</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="a"> A) Altın kalpli öğrenci ödülü 🏅</label>
+        <label><input type="radio" name="q4" value="b"> B) Sonsuz sabır madalyası 💫</label>
+        <label><input type="radio" name="q4" value="c"> C) En sevilen öğrenci kupası 🏆</label>
+      </div>
+
+      <p class="description">
+        Bu soru seçmeli sorudur. Zorluk yaşıyorsanız en sevdiğiniz öğrenciden (ben 😇) program bitişinde yardım alabilirsiniz.
+      </p>
+
+      <button type="button" onclick="checkAnswers()">Gönder</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const q4 = document.querySelector('input[name="q4"]:checked');
+      const q2 = Array.from(document.querySelectorAll('input[name="q2"]:checked')).map(i => i.value);
+
+      if (!q1 || !q3 || !q4) {
+        document.getElementById("result").innerHTML = "Lütfen tüm soruları cevaplayın 🌸";
+        return;
+      }
+
+      const correctQ1 = q1.value === "c";
+      const correctQ2 = q2.includes("a") && q2.includes("b") && q2.includes("c");
+      const correctQ3 = q3.value === "c";
+
+      if (correctQ1 && correctQ2 && correctQ3) {
+        document.getElementById("result").innerHTML =
+          "💖 Hayatıma dokunan en değerli rehberim, en büyük ilham kaynağımsınız.<br> Öğretmenler Gününüz kutlu olsun! 💖";
+      } else {
+        document.getElementById("result").innerHTML = "Hmm... bazı cevaplar yanlış olabilir 😅 Tekrar deneyin!";
+      }
+    }
+  </script>
+</body>
+</html>
